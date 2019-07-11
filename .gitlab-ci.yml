@@ -1,0 +1,73 @@
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - release
+  - deploy
+
+lint:
+  stage: test
+  image: staeke/meteor-alpine:1.8-slim-mongo
+  tags: 
+    - test
+  before_script:
+    - npm i
+  script:
+    - npm run lint
+
+test:
+  stage: test
+  image: staeke/meteor-alpine:1.8-slim-mongo
+  tags: 
+    - test
+  variables:
+    METEOR_ALLOW_SUPERUSER: 'true'
+  before_script:
+    - npm i
+  script:
+    - npm test
+
+release:
+  stage: release
+  image: docker:latest
+  tags: 
+    - release
+  only:
+    - 'release'
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - docker version
+    - 'docker info'
+    - 'docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY'
+  script:
+    - 'docker build -t $CI_REGISTRY_IMAGE:latest --pull .'
+    - 'docker push $CI_REGISTRY_IMAGE:latest'
+  after_script:
+    - 'docker logout $CI_REGISTRY'
+
+deploy:
+  stage: deploy
+  image: gitlab/dind:latest
+  tags: 
+    - release
+  only:
+    - 'release'
+  services:
+    - docker:dind
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent)
+    - ssh-add <(echo "$DEPLOYMENT_SSH_PRIVATE_KEY" | base64 -d)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - 'ssh-keyscan $DEPLOYMENT_SERVER_IP >> ~/.ssh/known_hosts'
+    - chmod 644 ~/.ssh/known_hosts
+    - 'ssh $DEPLOYMENT_SSH_USER@$DEPLOYMENT_SERVER_IP'
+    - 'scp -r ./docker-compose.autodeploy.yml $DEPLOYMENT_SSH_USER@$DEPLOYMENT_SERVER_IP:~'
+  script:
+    - ssh root@$DEPLOYMENT_SERVER_IP "docker login -u $REGISTRY_ACCESS_USERNAME -p $REGISTRY_ACCESS_PASSWORD $CI_REGISTRY; touch .env && echo CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE > .env; docker-compose -f docker-compose.autodeploy.yml stop; docker-compose -f docker-compose.autodeploy.yml pull; docker-compose -f docker-compose.autodeploy.yml up -d"

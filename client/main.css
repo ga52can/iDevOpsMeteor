@@ -1,0 +1,41 @@
+#react-target {
+  height: 100%;
+  width: 100%;
+  overflow: scroll !important;
+}
+
+.main-header {
+  position: fixed !important;
+  width: 100%;
+}
+
+.main-sidebar {
+  position: fixed !important;
+}
+
+.wrapper {
+  overflow: scroll !important;
+}
+
+.login-page,
+.register-page {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+label select {
+  font-weight: 400;
+}
+
+.skin-blue .sidebar-menu > li > a {
+  cursor: pointer;
+}
+
+.content {
+  padding-top: 50px !important;
+}
+
+.logo:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,25 @@
+version: '2'
+services:
+  meteor:
+    image: ${CI_REGISTRY_IMAGE}:latest
+    container_name: idevops
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    environment:
+      - ROOT_URL=http://localhost
+      - MONGO_URL=mongodb://mongo:27017/meteor
+      - POLL_DOCKER_STATS=true
+      - DOCKER_POLL=true
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

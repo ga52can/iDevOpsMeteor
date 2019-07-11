@@ -1,0 +1,155 @@
+{
+  "name": "idevops",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "lint": "eslint . --ext .js,.jsx --ignore-pattern node_modules/ --ignore-pattern lib/",
+    "visualize": "meteor --production --extra-packages bundle-visualizer",
+    "package": "meteor build ./release"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb",
+      "plugin:meteor/recommended",
+      "prettier",
+      "prettier/react"
+    ],
+    "parserOptions": {
+      "allowImportExportEverywhere": true
+    },
+    "plugins": [
+      "meteor",
+      "prettier"
+    ],
+    "settings": {
+      "import/resolver": "meteor"
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ],
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js"
+          ]
+        }
+      ],
+      "import/no-absolute-path": [
+        "off"
+      ],
+      "import/extensions": [
+        "off",
+        "never"
+      ],
+      "import/no-extraneous-dependencies": [
+        "off"
+      ],
+      "no-underscore-dangle": [
+        "off"
+      ],
+      "jsx-a11y/label-has-for": [
+        2,
+        {
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          }
+        }
+      ],
+      "jsx-a11y/label-has-associated-control": [
+        "error",
+        {
+          "required": {
+            "some": [
+              "nesting",
+              "id"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "@material-ui/core": "^3.9.1",
+    "@material-ui/icons": "^3.0.2",
+    "@react-bootstrap/pagination": "^1.0.0",
+    "body-parser": "^1.18.3",
+    "dockerode": "^2.5.7",
+    "md5": "^2.2.1",
+    "meteor-node-stubs": "^0.4.1",
+    "plotly.js": "^1.44.1",
+    "react": "^16.5.0",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.5.0",
+    "react-fontawesome": "^1.6.1",
+    "react-plotly.js": "2.2.0",
+    "react-responsive-modal": "^3.5.1",
+    "react-router-dom": "^4.3.1",
+    "react-sigma": "^1.2.30",
+    "react-table": "^6.9.0",
+    "reactjs-admin-lte": "^0.6.0",
+    "simpl-schema": "^1.5.3",
+    "vizceral-react": "^4.6.5"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "@meteorjs/eslint-config-meteor": "^1.0.5",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-import-resolver-meteor": "^0.4.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-meteor": "^5.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.15.2",
+    "jest": "23.6.0",
+    "jest-cli": "23.5.0"
+  },
+  "jest": {
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(js?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

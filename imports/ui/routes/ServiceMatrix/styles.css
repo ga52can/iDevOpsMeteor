@@ -1,0 +1,74 @@
+.env-table {
+  display: block;
+  position: relative;
+}
+
+
+.service-matrix th:not(.first),
+.service-matrix td {
+  border: 1px solid #3caddf;
+}
+
+.service-matrix .header div {
+  writing-mode: vertical-rl;
+}
+
+.service-matrix th {
+  padding: 10px;
+}
+
+
+.service-matrix td {
+  width: 30px;
+  height: 30px;
+}
+.service-matrix tr:hover {
+  background-color:#dddddd  ;
+}
+
+
+.service-matrix th:hover {
+  background-color:#aaaaaa  ;
+}
+
+.service-matrix .connected {
+  background-color: #3c8dbc;
+}
+
+.service-matrix .missingService {
+  background-color: #f4ad42;
+}
+
+.service-matrix .depOnlyTarget {
+  background-color: #b8f441;
+}
+
+.service-matrix .depOnlyBase {
+  background-color: #41f4c4;
+}
+
+.service-matrix .legendHeader {
+  align: right;
+}
+
+.content {
+  padding-top: 50px !important;
+}
+
+.env-table > .content {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.big-modal {
+  max-width: 1000px;
+  position: relative;
+}
+
+.inSync {
+  color:#3c8dbc
+}
+
+.notsynced {
+  color:#f4ad42 
+}

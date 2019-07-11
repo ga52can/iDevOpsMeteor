@@ -1,0 +1,33 @@
+.breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li {
+  color: var(--colorNormal);
+  font-weight: 200;
+  font-size: 20px;
+  display: inline;
+}
+
+.breadcrumbs li:last-of-type {
+  font-weight: 600;
+}
+
+.breadcrumbs li a {
+  color: var(--colorNormal);
+  cursor: pointer;
+}
+
+.breadcrumbs li a:hover {
+  color: #3c8dbc;
+}
+
+.breadcrumbs li:after {
+  content: ' / ';
+}
+
+.breadcrumbs li:last-child:after {
+  content: none;
+}

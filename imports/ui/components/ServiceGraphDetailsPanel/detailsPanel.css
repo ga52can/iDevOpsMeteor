@@ -1,0 +1,18 @@
+/* Details Panel
+-------------------------------------------------- */
+.details-panel {
+  min-width: 300px;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  bottom: 50px;
+  overflow: scroll;
+}
+
+.list-item {
+  font-size: 23;
+}
+
+.error {
+  color: red
+}

@@ -1,0 +1,26 @@
+
+/* Custom page CSS
+-------------------------------------------------- */
+.service-traffic-map {
+  position: relative;
+  top: 20px;
+  min-height: 500px;
+}
+
+.vizceral-container {
+  position: relative;
+}
+
+.subheader {
+  padding: 5px 15px 0 15px;
+  height: 45px;
+  border-bottom: 1px solid var(--colorBorderLines);
+}
+
+.subheader > div {
+  display: inline-block;
+}
+
+:root {
+  --colorBorderLines: rgb(137, 137, 137);
+}
