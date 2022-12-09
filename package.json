@@ -100,7 +100,7 @@
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
     "@react-bootstrap/pagination": "^1.0.0",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "dockerode": "^2.5.7",
     "md5": "^2.2.1",
     "meteor-node-stubs": "^0.4.1",
